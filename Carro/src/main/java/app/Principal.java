@@ -38,7 +38,7 @@ public class Principal {
 
 	private static void consultarCarro() {
 		long id = Long.parseLong(
-				JOptionPane.showInputDialog("Digite o Id"));
+				JOptionPane.showInputDialog("Digite o ID: "));
 		
 		CarroModel carro = entityManager.find(CarroModel.class, id);
 		JOptionPane.showMessageDialog(null, "Carro selecionado:" + carro);
@@ -48,12 +48,20 @@ public class Principal {
 			switch (opcao) {
 			case 1:
 				excluirCarro(carro);break;
+			case 2:
+				alterarCarro(carro);break;
 			case 3:
 				ligarCarro(carro);break;
 			case 4:
 			int veloAce = Integer.parseInt(
 					JOptionPane.showInputDialog("Digite a aceleração"));
 				acelerarCarro(carro, veloAce);break;
+			case 5:
+			int veloDesacelerar = Integer.parseInt(
+					JOptionPane.showInputDialog("Digite a desaceleração"));
+				desacelerarCarro(carro, veloDesacelerar);break;
+			case 6:
+				desligarCarro(carro);break;
 			default:break;
 		}
 		} while (opcao != 0 && opcao != 1);
@@ -66,11 +74,35 @@ public class Principal {
 		
 	}
 
+	private static void desacelerarCarro(CarroModel carro, int veloDesacelerar) {
+		CarroService carroService = new CarroService();
+		carroService.desacelerar(carro, veloDesacelerar);
+		JOptionPane.showMessageDialog(null, carro);
+		
+	}
+
 	private static void ligarCarro(CarroModel carro) {
 		CarroService carroService = new CarroService();
 		carroService.ligar(carro);
 		JOptionPane.showMessageDialog(null, "Ligado");
 		
+	}
+
+	private static void desligarCarro(CarroModel carro) {
+		CarroService carroService = new CarroService();
+		carroService.desligar(carro);
+		JOptionPane.showMessageDialog(null, "Desligado");
+		
+	}
+
+	private static void alterarCarro(CarroModel carro) {
+		String marca = JOptionPane.showInputDialog("Digite a nova marca do carro:");
+		String modelo = JOptionPane.showInputDialog("Digite o novo modelo do carro:");
+		int veloMax = Integer.parseInt(JOptionPane.showInputDialog("Digite a nova velocidade do carro"));
+		carro.setMarca(marca);
+		carro.setModelo(modelo);
+		carro.setVeloMax(veloMax);
+		JOptionPane.showMessageDialog(null, "Carro alterado com sucesso!");
 	}
 
 	private static void excluirCarro(CarroModel carro) {
@@ -97,7 +129,7 @@ public class Principal {
 	
 
 	private static void criarCarro() {
-		int veloMax = Integer.parseInt(JOptionPane.showInputDialog("Digite a velocidade máxima"));
+		int veloMax = Integer.parseInt(JOptionPane.showInputDialog("Digite a velocidade máxima: "));
 		String marca = JOptionPane.showInputDialog("Dig. a marca");
 		String modelo = JOptionPane.showInputDialog("Dig. o modelo");
 
