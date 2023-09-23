@@ -21,6 +21,10 @@ public class CarroModel {
 	public CarroModel(int veloMax) {
 		this.veloMax = veloMax;
 	}
+	
+	public CarroModel() {
+
+	}
 
 	
 	public CarroModel(int veloMax, String marca, String modelo) {
