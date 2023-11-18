@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Lista de Convidados</title>
+	
+</head>
+
+<body>
+
+
+<form class="form-inline" method="POST" th:action="@{/convidados}" style="margin: 20px 0" th:object="${convidado}" >
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+		<input type="text" class="form-control" placeholder="Acompanhantes" th:field="*{nAcomp}"/>
+		<button type="submit" class="btn btn-primary">Adicionar</button>
+	</div>
+</form>
+
+
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de convidados</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nomes</th>
+						<th>Acompanhantes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="convidado : ${convidados}">
+						<td th:text="${convidado.nome}"></td>
+						<td th:text="${convidado.nAcomp}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>
