@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ListaStudentsApplication<ListaStudents>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.crud.ListaStudents.ListaStudentsApplication",
+            "projectName": "ListaStudents",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
